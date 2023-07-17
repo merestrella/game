@@ -5,6 +5,7 @@ export default function Home() {
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
   const [moves, setMoves] = useState(0);
+  const maxMoves = 40;
   const [gameOver, setGameOver] = useState(false);
   useEffect(() => {
     initialize();
@@ -12,13 +13,13 @@ export default function Home() {
 
   useEffect(() => {
     if (matchedCards.length == 16) {
-      setGameOver(true);
+      setGameOver("¡Ganaste!");
     }
   }, [moves]);
 
   const initialize = () => {
     shuffle();
-    setGameOver(false);
+    setGameOver("");
     setFlippedCards([]);
     setMatchedCards([]);
     setMoves(0);
@@ -46,18 +47,20 @@ export default function Home() {
       } else {
         setFlippedCards([...flippedCards, i]);
       }
-
       setMoves((v) => v + 1);
+      if (moves >= maxMoves - 1) {
+      setGameOver(true);
+}
     }
   };
 
   return (
     <div className="container">
       <div className="menu">
-        <p>{`Moves - ${moves}`}</p>
+        <h2>¿Quién dijo qué?</h2>
       </div>
-
       <div className="board">
+      
         {boardData.map((data, i) => {
           const flipped = flippedCards.includes(i) ? true : false;
           const matched = matchedCards.includes(i) ? true : false;
@@ -78,9 +81,9 @@ export default function Home() {
         })}
       </div>
       <div className="menu">
-        <p>{`GameOver - ${gameOver}`}</p>
+      <p>{gameOver ? "¡Game Over!" : `${moves} Movimientos`}</p>
         <button onClick={() => initialize()} className="reset-btn">
-          Reset
+          Reiniciar
         </button>
       </div>
     </div>
