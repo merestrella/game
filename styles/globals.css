@@ -98,3 +98,9 @@ body {
   font-size: 18px;
 }
 
+.share-icons{
+  gap:5px;
+  display:flex;
+  align-items: center;
+}
+
