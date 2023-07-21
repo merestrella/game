@@ -11,6 +11,13 @@ a {
   text-decoration: none;
 }
 
+.title{
+  text-align: center;
+}
+p{
+  line-height: 0.5;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -24,6 +31,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 100px);
   grid-gap: 8px;
+  margin-top: 30px;
 }
 
 .card {
@@ -70,7 +78,7 @@ body {
   z-index: 2;
 }
 .card-back {
-  background-color: #ddd;
+  background-color: #E3332A;
   transform: rotateY(0);
   z-index: 1;
 }
