@@ -12,13 +12,13 @@ export default function Home() {
     initialize();
   }, []);
 
-  useEffect(() => {
-    if (matchedCards.length === 16) {
-      setGameOver("¡Felicitaciones, descubriste a todxs lxs políticos!"); // Mostrar "Ganaste!" cuando se completen todos los emparejamientos
-    } else if (moves >= maxMoves) {
-      setGameOver("Game Over!"); // Mostrar "Game Over!" si se supera maxMoves
-    }
-  }, [moves, matchedCards]);
+  // useEffect(() => {
+  //   if (matchedCards.length === 16) {
+  //     setGameOver("¡Felicitaciones, descubriste a todxs lxs políticos!"); // Mostrar "Ganaste!" cuando se completen todos los emparejamientos
+  //   } else if (moves >= maxMoves) {
+  //     setGameOver("Game Over!"); // Mostrar "Game Over!" si se supera maxMoves
+  //   }
+  // }, [moves, matchedCards]);
 
 
   const shareOnEmail = () => {
