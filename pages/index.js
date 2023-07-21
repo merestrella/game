@@ -8,9 +8,17 @@ export default function Home() {
   const [moves, setMoves] = useState(0);
   const maxMoves = 50;
   const [gameOver, setGameOver] = useState(false);
-  const [showWinMessage, setShowWinMessage] = useState(false);
-  const [showGameOverMessage, setShowGameOverMessage] = useState(false);
+  useEffect(() => {
+    initialize();
+  }, []);
 
+  useEffect(() => {
+    if (matchedCards.length === 16) {
+      setGameOver("¡Felicitaciones, descubriste a todxs lxs políticos!"); // Mostrar "Ganaste!" cuando se completen todos los emparejamientos
+    } else if (moves >= maxMoves) {
+      setGameOver("Game Over!"); // Mostrar "Game Over!" si se supera maxMoves
+    }
+  }, [moves, matchedCards]);
 
   const shareOnWhatsApp = () => {
     const message = `¡Gané en ${moves} movimientos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
@@ -53,13 +61,9 @@ export default function Home() {
     }
   };
 
-  
-
   const initialize = () => {
     shuffle();
-    setGameOver(false);
-    setShowWinMessage(false);
-    setShowGameOverMessage(false);
+    setGameOver("");
     setFlippedCards([]);
     setMatchedCards([]);
     setMoves(0);
@@ -73,42 +77,32 @@ export default function Home() {
   };
 
   const updateActiveCards = (i) => {
-    if (moves >= maxMoves) {
-      // Si ya se alcanzó el máximo de movimientos, no permitir más movimientos.
-      return;
-    }
     if (!flippedCards.includes(i)) {
-      if (flippedCards.length === 1) {
+      if (flippedCards.length == 1) {
         const firstIdx = flippedCards[0];
         const secondIdx = i;
-        if (boardData[firstIdx] === boardData[secondIdx]) {
+        if (boardData[firstIdx] == boardData[secondIdx]) {
           setMatchedCards((prev) => [...prev, firstIdx, secondIdx]);
         }
 
         setFlippedCards([...flippedCards, i]);
-      } else if (flippedCards.length === 2) {
+      } else if (flippedCards.length == 2) {
         setFlippedCards([i]);
       } else {
         setFlippedCards([...flippedCards, i]);
       }
       setMoves((v) => v + 1);
-
-      if (matchedCards.length === 16) {
-        // Verificar si se completaron todas las parejas.
-        setShowWinMessage(true);
-    } else if (moves === maxMoves - 1) {
-      // Si se alcanzó el último movimiento permitido, mostrar Game Over.
-      setShowGameOverMessage(true);
+      if (moves >= maxMoves - 1) {
+      setGameOver(true);
+}
     }
-  }
-};
+  };
 
   return (
     <div className="container">
-      
       <div className="title">
         <h1>Memotest - PASO 2023 </h1>
-        <p>Descubre quién dijo qué: </p>
+        <p className="subtitulo">Descubre quién dijo qué: </p>
         <p>un juego de memoria con candidatos y frases electorales</p>
       </div>
       <div className="board">
@@ -132,15 +126,8 @@ export default function Home() {
           );
         })}
       </div>
-      {showWinMessage && (
-        <p className="win-message">¡Felicitaciones, ganaste!</p>
-      )}
-
-      {showGameOverMessage && (
-        <p className="gameover-message">¡Game Over!</p>
-      )}
       <div className="menu">
-      <p>{`${moves} Movimientos`}</p>
+      <p>{gameOver ? "¡Felicitaciones, ganaste!" : `${moves} Movimientos`}</p>
         <button onClick={() => initialize()} className="reset-btn">
           Reiniciar
         </button>
@@ -163,7 +150,6 @@ export default function Home() {
     </div>
       )}
       </div>
-      
     </div>
   );
 }
