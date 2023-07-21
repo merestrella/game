@@ -20,6 +20,18 @@ export default function Home() {
     }
   }, [moves, matchedCards]);
 
+
+  const shareOnEmail = () => {
+    const subject = "¡Gané en el juego electoral 2023!";
+    const body = `¡Gané en ${moves} movimientos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
+  
+    const mailToUrl = `mailto:?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+    
+    window.open(mailToUrl);
+  };
+
   const shareOnWhatsApp = () => {
     const message = `¡Gané en ${moves} movimientos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
     const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
@@ -40,25 +52,6 @@ export default function Home() {
       message
     )}`;
     window.open(url, "_blank");
-  };
-  
-
-  const shareResult = () => {
-    if (navigator.share) {
-      // Si el navegador soporta la API de compartir
-      navigator
-        .share({
-          title: "Resultado del juego",
-          text: `¡Ganaste en ${moves} movimientos!`,
-        })
-        .then(() => console.log("Resultado compartido con éxito"))
-        .catch((error) => console.error("Error al compartir:", error));
-    } else {
-      // Si el navegador no soporta la API de compartir, muestra un mensaje de advertencia
-      alert(
-        "Tu navegador no soporta la función de compartir. Puedes copiar el resultado y compartirlo manualmente."
-      );
-    }
   };
 
   const initialize = () => {
@@ -126,29 +119,33 @@ export default function Home() {
           );
         })}
       </div>
-      <div className="menu">
+    
       <p>{gameOver ? "¡Felicitaciones, ganaste!" : `${moves} Movimientos`}</p>
+    <div className="menu">
+      <div className="btn">
         <button onClick={() => initialize()} className="reset-btn">
           Reiniciar
         </button>
-        {gameOver && (
-    <div>
-      <button onClick={shareResult} className="share-btn">
-        Compartir
-      </button>
-      <div className="share-icons">
-        <a href="#" onClick={() => shareOnWhatsApp()}>
-        <Icon icon="logos:whatsapp-icon" width="40" />
-        </a>
-        <a href="#" onClick={() => shareOnFacebook()}>
-        <Icon icon="logos:facebook" width="35" />
-        </a>
-        <a href="#" onClick={() => shareOnTwitter()}>
-        <Icon icon="skill-icons:twitter" width="35"/>
-        </a>
       </div>
-    </div>
-      )}
+        {gameOver && (
+      <div className="share-container">
+        <p>Compartir:</p>
+        <div className="share-icons">
+          <a href="#" onClick={() => shareOnEmail()}>
+            <Icon icon="ic:outline-email" width="35" />
+          </a>
+          <a href="#" onClick={() => shareOnWhatsApp()}>
+            <Icon icon="logos:whatsapp-icon" width="40" />
+          </a>
+          <a href="#" onClick={() => shareOnFacebook()}>
+            <Icon icon="logos:facebook" width="35" />
+          </a>
+          <a href="#" onClick={() => shareOnTwitter()}>
+            <Icon icon="skill-icons:twitter" width="35"/>
+          </a>
+        </div>
+      </div>
+       )} 
       </div>
     </div>
   );
