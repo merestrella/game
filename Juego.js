@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { candidatos } from "./frases";
 import { Roboto, Alfa_Slab_One } from "next/font/google";
+import Confetti from "react-confetti";
+import { Icon } from "@iconify/react";
+
+import "animate.css";
 
 const alfa = Alfa_Slab_One({
   weight: "400",
@@ -19,6 +23,14 @@ const JuegoPreguntasRespuestas = () => {
   const [puntos, setPuntos] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [frasesSeleccionadas, setFrasesSeleccionadas] = useState([]);
+
+  const [windowWidth, setWindowWidth] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(0);
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    setWindowHeight(window.innerHeight);
+  }, []);
 
   const [moves, setMoves] = useState(0);
 
@@ -49,7 +61,9 @@ const JuegoPreguntasRespuestas = () => {
     setMoves((v) => v + 1); // sumo 1 a moves
     if (moves >= maxMoves - 1) {
       // si moves es mayor o igual a maxMoves
-      setGameOver(true); // seteo gameOver en true
+      setTimeout(() => {
+        setGameOver(true); // seteo gameOver en true
+      }, 2000);
     }
     // Comprobar si el candidato seleccionado es el correcto
     const candidatoCorrecto = candidatos.find((candidato) =>
@@ -67,7 +81,7 @@ const JuegoPreguntasRespuestas = () => {
     // despues de 1s pasar a la siguiente frase
     setTimeout(() => {
       obtenerFraseAleatoria();
-    }, 1000);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -79,9 +93,51 @@ const JuegoPreguntasRespuestas = () => {
     verificarRespuesta(candidatoNombre);
   };
 
+  const handleReset = () => {
+    setPuntos(0);
+    setGameOver(false);
+    setMoves(0);
+    setFrasesSeleccionadas([]);
+    obtenerFraseAleatoria();
+  };
+
+  const shareOnEmail = () => {
+    const subject = "¡Gané en el juego electoral 2023!";
+    const body = `¡Gané en ${moves} movimientos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
+
+    const mailToUrl = `mailto:?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.open(mailToUrl);
+  };
+
+  const shareOnWhatsApp = () => {
+    const message = `¡Sumé ${puntos} puntos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
+    const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  };
+
+  const shareOnFacebook = () => {
+    const message = `¡Sumé ${puntos} puntos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      message
+    )}`;
+    window.open(url, "_blank");
+  };
+
+  const shareOnTwitter = () => {
+    const message = `¡Sumé ${puntos} puntos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(url, "_blank");
+  };
+
   return (
-    <div className="container">
-      <>
+    <>
+      <div className="container">
+        <h3 className={`${roboto.className}`}>¿Quién lo dijo?</h3>
         <h2 className={`pregunta ${alfa.className}`}>{fraseAleatoria}</h2>
         <div className="candidatos">
           {candidatos.map((candidato) => (
@@ -94,28 +150,54 @@ const JuegoPreguntasRespuestas = () => {
             </div>
           ))}
         </div>
-      </>
-
-      <br />
-      {/* <div className={`respuesta ${alfa.className}`}>
-        <div className=" respuesta-correcta "> Respuesta correcta 👍 </div>
-      </div> */}
+      </div>
+      {/*       <div className={`respuesta ${alfa.className}`}>
+          <div className=" respuesta-correcta "> Respuesta correcta 👍 </div>
+        </div> */}
       {mostrarResultado && resultadoRespuesta === "Respuesta correcta" && (
         <div className={`respuesta ${alfa.className}`}>
-          <div className=" respuesta-correcta "> Respuesta correcta 👍 </div>
+          <div className=" animate__animated animate__zoomInDown respuesta-correcta ">
+            {" "}
+            Respuesta correcta 👍{" "}
+          </div>
         </div>
       )}
       {mostrarResultado && resultadoRespuesta === "Respuesta incorrecta" && (
         <div className={`respuesta ${alfa.className}`}>
-          <div className=" respuesta-incorrecta "> Respuesta incorrecta 👎</div>
+          <div className=" animate__animated animate__zoomInDown respuesta-incorrecta ">
+            {" "}
+            Respuesta incorrecta 👎
+          </div>
         </div>
       )}
       {gameOver && (
         <>
-          <div className="game-over">
+          <Confetti width={windowWidth} height={windowHeight} />
+          <div className={`game-over ${alfa.className}`}>
             <div className="datos">
               <p>Terminaste!</p>
               <p>Sumaste {puntos} puntos</p>
+              
+              <div className="share-container">
+                <p className={roboto.className}>Compartir:</p>
+                <div className="share-icons">
+                  <a href="#" onClick={() => shareOnEmail()}>
+                    <Icon icon="ic:outline-email" width="35" />
+                  </a>
+                  <a href="#" onClick={() => shareOnWhatsApp()}>
+                    <Icon icon="logos:whatsapp-icon" width="40" />
+                  </a>
+                  <a href="#" onClick={() => shareOnFacebook()}>
+                    <Icon icon="logos:facebook" width="35" />
+                  </a>
+                  <a href="#" onClick={() => shareOnTwitter()}>
+                    <Icon icon="skill-icons:twitter" width="35" />
+                  </a>
+                </div>
+              </div>
+              <button className={roboto.className} onClick={handleReset}>
+                Volver a jugar
+              </button>
             </div>
           </div>
         </>
@@ -123,7 +205,7 @@ const JuegoPreguntasRespuestas = () => {
       {!gameOver && (
         <div className={` puntos ${roboto.className}`}>Puntos: {puntos}</div>
       )}
-    </div>
+    </>
   );
 };
 
