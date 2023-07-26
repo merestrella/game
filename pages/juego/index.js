@@ -1,5 +1,5 @@
 import React from 'react'
-import JuegoPreguntasRespuestas from '../Juego'
+import JuegoPreguntasRespuestas from '../../Juego'
 
 const index = () => {
   return (
