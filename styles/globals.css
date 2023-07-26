@@ -1,3 +1,97 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  background-color: #c90f05;
+}
+
+.container {
+  max-width: 960px;
+  margin: auto;
+  position: relative;
+}
+
+.pregunta {
+  color: #fff;
+  text-align: center;
+  font-size: 40px;
+}
+
+.candidatos {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 200px);
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+}
+.candidatos .candidato {
+  cursor: pointer;
+}
+
+.candidatos .candidato:hover {
+  transform: rotate(4deg);
+}
+
+.candidatos .candidato img {
+  max-width: 100%;
+}
+
+.respuesta {
+  font-size: 18px;
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(14px);
+  font-size: 40px;
+}
+
+.respuesta-correcta {
+  color: green;
+  transform: rotate(-3deg);
+  text-shadow: 3px 3px 0px white;
+}
+
+.respuesta-incorrecta {
+  color: red;
+  transform: rotate(-3deg);
+  text-shadow: 3px 3px 0px white;
+}
+
+.puntos {
+  position: fixed;
+  bottom: 0px;
+  font-size: 20px;
+  padding: 10px 0;
+  color: #fff;
+  width: 500px;
+  text-align: center;
+  width: 100%;
+  left: 0;
+}
+
+.game-over {
+  font-size: 18px;
+  color: #fff;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(14px);
+  font-size: 40px;
+}
+
+.game-over .datos {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-over .datos p {
+  margin: 0;
+}

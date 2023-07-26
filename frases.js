@@ -71,7 +71,9 @@ export const candidatos = [
     nombre: "Morales",
     frases: [
       "“Vamos a frenar cualquier intento de desestabilización como frenamos el golpe en Jujuy”",
+      '“Esta reforma es progresista, genera derechos, es moderna"',
+      '"Los cortes de ruta son un delito, no es una modalidad de protesta',
     ],
-    img: "/images/Morales.png",
+    img: "/images/Morales.jpg",
   },
 ];
