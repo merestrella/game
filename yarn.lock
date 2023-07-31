@@ -308,6 +308,11 @@ axobject-query@^2.2.0:
   resolved "https://registry.npmjs.org/axobject-query/-/axobject-query-2.2.0.tgz"
   integrity sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA==
 
+babel-plugin-module-alias@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-module-alias/-/babel-plugin-module-alias-1.6.0.tgz#df7e3aaba3544f4c06a9d3314a26bbbff6d87b61"
+  integrity sha512-UXZKdjiV7kns1dw0SPpHPnFGOoH+SFbO81uqW4iX2tjx7YhkXMRkRIjD0WGxfo1jjgluHCbkWrf2goSPye0VNA==
+
 babel@^6.23.0:
   version "6.23.0"
   resolved "https://registry.npmjs.org/babel/-/babel-6.23.0.tgz"

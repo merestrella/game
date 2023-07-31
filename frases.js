@@ -63,7 +63,7 @@ export const candidatos = [
     nombre: "Bregman",
     frases: [
       '"Un Poder Judicial que ha hecho un recorte de la realidad claramente ubicado en CFK, hay una proscripción política”',
-      '"No me pienso mover de acá" (Viva perón)"',
+      '"No me pienso mover de acá (Viva perón)"',
     ],
     img: "/images/Bregman.jpg",
   },
@@ -72,7 +72,7 @@ export const candidatos = [
     frases: [
       "“Vamos a frenar cualquier intento de desestabilización como frenamos el golpe en Jujuy”",
       '“Esta reforma es progresista, genera derechos, es moderna"',
-      '"Los cortes de ruta son un delito, no es una modalidad de protesta',
+      '"Los cortes de ruta son un delito, no es una modalidad de protesta"',
     ],
     img: "/images/Morales.jpg",
   },

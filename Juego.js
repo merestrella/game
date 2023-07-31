@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { candidatos } from "./frases";
-import { Roboto, Alfa_Slab_One } from "next/font/google";
+import { Roboto, Alfa_Slab_One, Rubik, } from "next/font/google";
 import Confetti from "react-confetti";
 import { Icon } from "@iconify/react";
-
 import "animate.css";
 
 const alfa = Alfa_Slab_One({
@@ -12,6 +11,10 @@ const alfa = Alfa_Slab_One({
 });
 const roboto = Roboto({
   weight: "400",
+  subsets: ["latin"],
+});
+const rubik = Rubik({
+  weight: "500",
   subsets: ["latin"],
 });
 
@@ -34,7 +37,7 @@ const JuegoPreguntasRespuestas = () => {
 
   const [moves, setMoves] = useState(0);
 
-  const maxMoves = 7;
+  const maxMoves = 10;
 
   const obtenerFraseAleatoria = () => {
     const candidatoAleatorio =
@@ -102,7 +105,7 @@ const JuegoPreguntasRespuestas = () => {
   };
 
   const shareOnEmail = () => {
-    const subject = "¡Gané en el juego electoral 2023!";
+    const subject = "¡Jugué al juego electoral 2023!";
     const body = `¡Gané en ${moves} movimientos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
 
     const mailToUrl = `mailto:?subject=${encodeURIComponent(
@@ -137,7 +140,7 @@ const JuegoPreguntasRespuestas = () => {
   return (
     <>
       <div className="container">
-        <h3 className={`${roboto.className}`}>¿Quién lo dijo?</h3>
+        <h3 className={`${rubik.className}`}>¿Quién lo dijo?</h3>
         <h2 className={`pregunta ${alfa.className}`}>{fraseAleatoria}</h2>
         <div className="candidatos">
           {candidatos.map((candidato) => (

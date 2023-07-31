@@ -11,14 +11,17 @@ body {
 h3 {
   color: #fff;
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 0;
+  width: 20%;
+  display: block;
+  margin: auto;
 }
 
 h2.pregunta {
   color: #fff;
   text-align: center;
-  font-size: 40px;
+  font-size: 25px;
   margin-top: 10px;
 }
 
@@ -60,7 +63,7 @@ h2.pregunta {
 .respuesta-correcta {
   color: green;
   transform: rotate(-3deg);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 6px 4px 0 #000;
+  text-shadow: -1px -1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 6px 4px 0 #000;
   animation-duration: 1;
 }
 
@@ -77,10 +80,8 @@ h2.pregunta {
   font-size: 20px;
   padding: 10px 0;
   color: #fff;
-  width: 500px;
   text-align: center;
-  width: 100%;
-  left: 0;
+  left: 8px;
 }
 
 .game-over {
@@ -132,4 +133,25 @@ h2.pregunta {
   color: #fff;
   text-align: center;
   text-shadow: none;
+}
+
+
+@media (max-width: 600px) {
+  h3{
+    font-size: 17px;
+    width: 100%;
+  }
+  h2.pregunta{
+    font-size: 17px;
+    line-height: 1;
+  }
+  .candidatos{
+    grid-template-columns: repeat(2, 150px);
+  }
+  .puntos{
+    position: inherit;
+  }
+  .respuesta{
+    font-size: 20px;
+  }
 }
