@@ -161,9 +161,7 @@ const JuegoPreguntasRespuestas = () => {
           ))}
         </div>
       </div>
-      {/*       <div className={`respuesta ${alfa.className}`}>
-          <div className=" respuesta-correcta "> Respuesta correcta 👍 </div>
-        </div> */}
+   
       {mostrarResultado && resultadoRespuesta === "Respuesta correcta" && (
         <div className={`respuesta ${alfa.className}`}>
           <div className=" animate__animated animate__zoomInDown respuesta-correcta ">
@@ -185,11 +183,11 @@ const JuegoPreguntasRespuestas = () => {
           <Confetti width={windowWidth} height={windowHeight} />
           <div className={`game-over ${alfa.className}`}>
             <div className="datos">
-              <p>Terminaste!</p>
+              <p>Fin del juego</p>
               <p>Sumaste {puntos} puntos</p>
               
               <div className="share-container">
-                <p className={roboto.className}>Compartir:</p>
+                <p className={roboto.className}>Compartir resultado:</p>
                 <div className="share-icons">
                   <a href="#" onClick={() => shareOnEmail()}>
                     <Icon icon="ic:outline-email" width="35" />
@@ -205,7 +203,7 @@ const JuegoPreguntasRespuestas = () => {
                   </a>
                 </div>
               </div>
-              <button className={roboto.className} onClick={handleReset}>
+              <button className={`btn ${roboto.className}`} onClick={handleReset}>
                 Volver a jugar
               </button>
             </div>

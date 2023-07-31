@@ -135,6 +135,10 @@ h2.pregunta {
   text-shadow: none;
 }
 
+.btn{
+  border-radius: 10px;
+  margin:auto;
+}
 
 @media (max-width: 600px) {
   h3{
@@ -146,12 +150,27 @@ h2.pregunta {
     line-height: 1;
   }
   .candidatos{
-    grid-template-columns: repeat(2, 150px);
+    grid-template-columns: repeat(2, 120px);
+    width: 60%;
+    margin:auto;
+   
   }
   .puntos{
     position: inherit;
   }
   .respuesta{
     font-size: 20px;
+  }
+  .candidatos .candidato:hover {
+  transform: none;
+  }
+  .game-over{
+  font-size:30px;
+  }
+  .share-container p{
+    font-size: 20px;
+  }
+  .share-icons{
+    margin-top:15px;
   }
 }
