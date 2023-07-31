@@ -40,9 +40,11 @@ const JuegoPreguntasRespuestas = () => {
   const maxMoves = 10;
 
   const obtenerFraseAleatoria = () => {
+    console.log("obtenerFraseAleatoria")
     const candidatoAleatorio =
       candidatos[Math.floor(Math.random() * candidatos.length)];
     let fraseAleatoria;
+    let intentos = 0;
 
     // Buscar una frase que no haya sido seleccionada anteriormente
     do {
@@ -50,6 +52,11 @@ const JuegoPreguntasRespuestas = () => {
         candidatoAleatorio.frases[
           Math.floor(Math.random() * candidatoAleatorio.frases.length)
         ];
+      intentos++;
+      // Agregar una condición para evitar el bucle infinito
+      if (intentos >= candidatoAleatorio.frases.length) {
+        break;
+      }
     } while (frasesSeleccionadas.includes(fraseAleatoria));
 
     // Agregar la frase seleccionada al arreglo de frases seleccionadas
