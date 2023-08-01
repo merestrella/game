@@ -7,7 +7,7 @@ export const candidatos = [
       '"La educación dejará de ser gratuita"',
       '"Voy a derogar la Ley del aborto"',
     ],
-    img: "/images/milei.jpg",
+    img: "/public/images/milei.jpg",
   },
   {
     nombre: "Bullrich",
@@ -17,7 +17,7 @@ export const candidatos = [
       "“No puede ser que o decís que son 30.000 desaparecidos o sos un traidor a la patria”",
       '"Vamos a entrar a Rosario con las Fuerzas Armadas"',
     ],
-    img: "/images/bullrich.jpg",
+    img: "/public/images/bullrich.jpg",
   },
   {
     nombre: "Larreta",
@@ -26,7 +26,7 @@ export const candidatos = [
       "“Tenemos que actualizar la legislación y terminar con la industria del juicio”",
       '“Vamos a buscar un déficit cero desde el primer año."',
     ],
-    img: "/images/larreta.jpg",
+    img: "/public/images/larreta.jpg",
   },
   {
     nombre: "Massa",
@@ -36,7 +36,7 @@ export const candidatos = [
       "“Si mañana no se resolviese el conflicto, vamos a habilitar a las empresas para importar todos los neumáticos que necesiten”",
       '"Yo voy a barrer con los ñoquis de La Cámpora"',
     ],
-    img: "/images/massa.jpg",
+    img: "/public/images/massa.jpg",
   },
   {
     nombre: "Grabois",
@@ -46,7 +46,7 @@ export const candidatos = [
       '"Ni en pedo vamos a votar a este cagador y vendepatria"',
       '"Que el Estado tenga el control sobre el litio, donde sin dejar de lado los inversores, el 51% es nuestro"',
     ],
-    img: "/images/grabois.jpg",
+    img: "./public/images/Grabois.jpg",
   },
   {
     nombre: "Solano",
@@ -57,7 +57,7 @@ export const candidatos = [
       "“La CGT y el gobierno se ríen de los trabajadores con un salario de $105.000”",
       '"Le mandé a Myriam Bregman una carta invitando a un debate público"',
     ],
-    img: "/images/solano.jpg",
+    img: "/public/images/solano.jpg",
   },
   {
     nombre: "Bregman",
@@ -65,7 +65,7 @@ export const candidatos = [
       '"Un Poder Judicial que ha hecho un recorte de la realidad claramente ubicado en CFK, hay una proscripción política”',
       '"No me pienso mover de acá (Viva perón)"',
     ],
-    img: "/images/bregman.jpg",
+    img: "/public/images/bregman.jpg",
   },
   {
     nombre: "Morales",
@@ -74,6 +74,6 @@ export const candidatos = [
       '“Esta reforma es progresista, genera derechos, es moderna"',
       '"Los cortes de ruta son un delito, no es una modalidad de protesta"',
     ],
-    img: "/images/morales.jpg",
+    img: "/public/images/morales.jpg",
   },
 ];
