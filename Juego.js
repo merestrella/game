@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { candidatos } from "./frases";
-import { Roboto, Alfa_Slab_One, Rubik, } from "next/font/google";
+import { Roboto, Alfa_Slab_One, Rubik } from "next/font/google";
 import Confetti from "react-confetti";
 import { Icon } from "@iconify/react";
 import "animate.css";
@@ -26,7 +26,7 @@ const JuegoPreguntasRespuestas = () => {
   const [puntos, setPuntos] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [frasesSeleccionadas, setFrasesSeleccionadas] = useState([]);
-
+  const [respuestaCorrecta, setRespuestaCorrecta] = useState("");
   const [windowWidth, setWindowWidth] = useState(0);
   const [windowHeight, setWindowHeight] = useState(0);
 
@@ -40,7 +40,7 @@ const JuegoPreguntasRespuestas = () => {
   const maxMoves = 10;
 
   const obtenerFraseAleatoria = () => {
-    console.log("obtenerFraseAleatoria")
+    console.log("obtenerFraseAleatoria");
     const candidatoAleatorio =
       candidatos[Math.floor(Math.random() * candidatos.length)];
     let fraseAleatoria;
@@ -87,10 +87,17 @@ const JuegoPreguntasRespuestas = () => {
       setPuntos(puntos + 1);
     }
     setMostrarResultado(true);
+    // Mostrar la respuesta correcta en caso de respuesta incorrecta
+    if (!esCorrecto) {
+      setRespuestaCorrecta(candidatoCorrecto.nombre);
+    }
+
+    setMostrarResultado(true);
 
     // despues de 1s pasar a la siguiente frase
     setTimeout(() => {
       obtenerFraseAleatoria();
+      setRespuestaCorrecta("");
     }, 2000);
   };
 
@@ -161,7 +168,7 @@ const JuegoPreguntasRespuestas = () => {
           ))}
         </div>
       </div>
-   
+
       {mostrarResultado && resultadoRespuesta === "Respuesta correcta" && (
         <div className={`respuesta ${alfa.className}`}>
           <div className=" animate__animated animate__zoomInDown respuesta-correcta ">
@@ -176,8 +183,14 @@ const JuegoPreguntasRespuestas = () => {
             {" "}
             Respuesta incorrecta 👎
           </div>
+          {respuestaCorrecta !== "" && (
+            <div className={`solucion ${rubik.className}`}>
+              <p>La respuesta correcta es: {respuestaCorrecta}</p>
+            </div>
+          )}
         </div>
       )}
+
       {gameOver && (
         <>
           <Confetti width={windowWidth} height={windowHeight} />
@@ -185,7 +198,7 @@ const JuegoPreguntasRespuestas = () => {
             <div className="datos">
               <p>Fin del juego</p>
               <p>Sumaste {puntos} puntos</p>
-              
+
               <div className="share-container">
                 <p className={roboto.className}>Compartir resultado:</p>
                 <div className="share-icons">
@@ -203,7 +216,10 @@ const JuegoPreguntasRespuestas = () => {
                   </a>
                 </div>
               </div>
-              <button className={`btn ${roboto.className}`} onClick={handleReset}>
+              <button
+                className={`btn ${roboto.className}`}
+                onClick={handleReset}
+              >
                 Volver a jugar
               </button>
             </div>
@@ -211,7 +227,7 @@ const JuegoPreguntasRespuestas = () => {
         </>
       )}
       {!gameOver && (
-        <div className={` puntos ${roboto.className}`}>Puntos: {puntos}</div>
+        <div className={` puntos ${roboto.className}`}>Puntos: {puntos}/10</div>
       )}
     </>
   );
