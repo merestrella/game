@@ -120,7 +120,7 @@ const JuegoPreguntasRespuestas = () => {
 
   const shareOnEmail = () => {
     const subject = "¡Jugué al juego electoral 2023!";
-    const body = `¡Gané en ${moves} movimientos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
+    const body = `¡Gané en ${moves} movimientos! Te desafío al "Quién dijo" de las elecciones 2023 en: https://prensaobrera.com/juego-elecciones-2023`;
 
     const mailToUrl = `mailto:?subject=${encodeURIComponent(
       subject
@@ -136,7 +136,7 @@ const JuegoPreguntasRespuestas = () => {
   };
 
   const shareOnFacebook = () => {
-    const message = `¡Sumé ${puntos} puntos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
+    const message = `¡Sumé ${puntos} puntos! Te desafío al "Quién dijo" de las elecciones 2023 en: https://prensaobrera.com/juego-elecciones-2023`;
     const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
       message
     )}`;
@@ -144,7 +144,7 @@ const JuegoPreguntasRespuestas = () => {
   };
 
   const shareOnTwitter = () => {
-    const message = `¡Sumé ${puntos} puntos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
+    const message = `¡Sumé ${puntos} puntos! Te desafío al "Quién dijo" de las elecciones 2023 en: https://prensaobrera.com/juego-elecciones-2023`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
       message
     )}`;
