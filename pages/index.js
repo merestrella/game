@@ -1,14 +1,14 @@
 import React from 'react'
-import JuegoPreguntasRespuestas from '../Juego'
 import Head from 'next/head'
+import PreviewPage from '../previewspage'
 
 const index = () => {
   return (
     <>
       <Head>
-        <title key="title">Juego de preguntas y respuestas</title>
+        <title key="title">Juego electoral 2023</title>
       </Head>
-      <JuegoPreguntasRespuestas />
+      <PreviewPage />
     </>
   )
 }

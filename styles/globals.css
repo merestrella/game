@@ -1,5 +1,5 @@
 body {
-  background-color: #c90f05;
+  background-color: #D2463D;
 }
 
 .container {
@@ -148,9 +148,33 @@ h2.pregunta {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: end;
+  align-items: self-end;
+  font-size: 25px;
+  margin-bottom: 100px;
+}
+.btn-start{
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  border: solid 1px;
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 9px #999;
+  text-align: center;
+  display: inline-block;
+  margin-top: 250px;
+}
+.btn-start:hover{
+  background-color: #B1383C;
+}
 
-  font-size: 18px;
+.btn-start:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.container-preview{
+  text-align: center;
+  
 }
 
 @media (max-width: 600px) {
@@ -184,5 +208,8 @@ h2.pregunta {
   }
   .share-icons {
     margin-top: 15px;
+  }
+  .solucion{
+    font-size: 18px;
   }
 }

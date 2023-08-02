@@ -130,7 +130,7 @@ const JuegoPreguntasRespuestas = () => {
   };
 
   const shareOnWhatsApp = () => {
-    const message = `¡Sumé ${puntos} puntos! Te desafío a completar el juego electoral 2023 aquí: https://prensaobrera.com`;
+    const message = `¡Sumé ${puntos} puntos! Te desafío al "Quién dijo" de las elecciones 2023 en: https://prensaobrera.com/juego-elecciones-2023`;
     const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank");
   };

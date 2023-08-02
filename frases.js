@@ -63,7 +63,7 @@ export const candidatos = [
     nombre: "Bregman",
     frases: [
       '"Un Poder Judicial que ha hecho un recorte de la realidad claramente ubicado en CFK, hay una proscripción política”',
-      '"No me pienso mover de acá (Viva perón)"',
+      '"No me pienso mover de acá (Viva Perón)"',
     ],
     img: "/images/Bregman.jpg",
   },
