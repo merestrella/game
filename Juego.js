@@ -154,7 +154,6 @@ const JuegoPreguntasRespuestas = () => {
   return (
     <>
       <div className="container">
-        <h3 className={`${rubik.className}`}>¿Quién lo dijo?</h3>
         <h2 className={`pregunta ${alfa.className}`}>{fraseAleatoria}</h2>
         <div className="candidatos">
           {candidatos.map((candidato) => (
