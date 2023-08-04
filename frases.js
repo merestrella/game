@@ -43,7 +43,7 @@ export const candidatos = [
     frases: [
       '"(El Papa)Francisco tomó las banderas Tierra, Techo y Trabajo"',
       '"El que pierde ACOMPAÑA, si no apoyo a Massa sería una ESTAFA"',
-      '"Ni en pedo vamos a votar a este cagador y vendepatria"',
+      '"Ni en pedo vamos a votar a este cagador y vendepatria" (sobre Massa)',
       '"Que el Estado tenga el control sobre el litio, donde sin dejar de lado los inversores, el 51% es nuestro"',
     ],
     img: "/images/Grabois.jpg",
@@ -63,7 +63,7 @@ export const candidatos = [
     nombre: "Bregman",
     frases: [
       '"Un Poder Judicial que ha hecho un recorte de la realidad claramente ubicado en CFK, hay una proscripción política”',
-      '"No me pienso mover de acá (Viva Perón)"',
+      '"No me pienso mover de acá" (frente a un graffiti de Viva Perón)',
     ],
     img: "/images/Bregman.jpg",
   },

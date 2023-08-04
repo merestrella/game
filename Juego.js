@@ -33,6 +33,7 @@ const JuegoPreguntasRespuestas = () => {
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     setWindowHeight(window.innerHeight);
+    obtenerFraseAleatoria();
   }, []);
 
   const [moves, setMoves] = useState(0);
@@ -65,6 +66,14 @@ const JuegoPreguntasRespuestas = () => {
     setFraseAleatoria(fraseAleatoria);
     setCandidatoSeleccionado("");
     setMostrarResultado(false);
+  };
+
+  const handleReset = () => {
+    setPuntos(0);
+    setGameOver(false);
+    setMoves(0);
+    setFrasesSeleccionadas([]); // Reiniciar las frases seleccionadas al iniciar un nuevo juego
+    obtenerFraseAleatoria();
   };
 
   const verificarRespuesta = (candidatoNombre) => {
@@ -108,14 +117,6 @@ const JuegoPreguntasRespuestas = () => {
   const handleCandidateSelection = (candidatoNombre) => {
     setCandidatoSeleccionado(candidatoNombre);
     verificarRespuesta(candidatoNombre);
-  };
-
-  const handleReset = () => {
-    setPuntos(0);
-    setGameOver(false);
-    setMoves(0);
-    setFrasesSeleccionadas([]);
-    obtenerFraseAleatoria();
   };
 
   const shareOnEmail = () => {
