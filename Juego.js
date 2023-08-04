@@ -25,7 +25,7 @@ const JuegoPreguntasRespuestas = () => {
   const [resultadoRespuesta, setResultadoRespuesta] = useState("");
   const [puntos, setPuntos] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const [frasesSeleccionadas, setFrasesSeleccionadas] = useState([]);
+  const [frasesSeleccionadas, setFrasesSeleccionadas] = useState(new Set());
   const [respuestaCorrecta, setRespuestaCorrecta] = useState("");
   const [windowWidth, setWindowWidth] = useState(0);
   const [windowHeight, setWindowHeight] = useState(0);
@@ -40,70 +40,122 @@ const JuegoPreguntasRespuestas = () => {
 
   const maxMoves = 10;
 
+  // const obtenerFraseAleatoria = () => {
+  //   console.log("obtenerFraseAleatoria");
+  //   const candidatoAleatorio =
+  //     candidatos[Math.floor(Math.random() * candidatos.length)];
+  //   let fraseAleatoria;
+  //   let intentos = 0;
+
+  //   // Buscar una frase que no haya sido seleccionada anteriormente
+  //   do {
+  //     fraseAleatoria =
+  //       candidatoAleatorio.frases[
+  //         Math.floor(Math.random() * candidatoAleatorio.frases.length)
+  //       ];
+  //     intentos++;
+  //     // Agregar una condición para evitar el bucle infinito
+  //     if (intentos >= candidatoAleatorio.frases.length) {
+  //       break;
+  //     }
+  //   } while (frasesSeleccionadas.includes(fraseAleatoria));
+
+  //   // Agregar la frase seleccionada al arreglo de frases seleccionadas
+  //   setFrasesSeleccionadas([...frasesSeleccionadas, fraseAleatoria]);
+
+  //   setFraseAleatoria(fraseAleatoria);
+  //   setCandidatoSeleccionado("");
+  //   setMostrarResultado(false);
+  // };
   const obtenerFraseAleatoria = () => {
     console.log("obtenerFraseAleatoria");
-    const candidatoAleatorio =
-      candidatos[Math.floor(Math.random() * candidatos.length)];
-    let fraseAleatoria;
-    let intentos = 0;
-
-    // Buscar una frase que no haya sido seleccionada anteriormente
-    do {
-      fraseAleatoria =
-        candidatoAleatorio.frases[
-          Math.floor(Math.random() * candidatoAleatorio.frases.length)
-        ];
-      intentos++;
-      // Agregar una condición para evitar el bucle infinito
-      if (intentos >= candidatoAleatorio.frases.length) {
-        break;
-      }
-    } while (frasesSeleccionadas.includes(fraseAleatoria));
-
-    // Agregar la frase seleccionada al arreglo de frases seleccionadas
-    setFrasesSeleccionadas([...frasesSeleccionadas, fraseAleatoria]);
-
+    const frasesDisponibles = candidatos.flatMap(candidato => candidato.frases);
+    const frasesNoSeleccionadas = frasesDisponibles.filter(frase => !frasesSeleccionadas.has(frase));
+  
+    if (frasesNoSeleccionadas.length === 0) {
+      // Todas las frases han sido seleccionadas, reiniciar el conjunto
+      setFrasesSeleccionadas(new Set());
+    }
+  
+    const fraseAleatoria =
+      frasesNoSeleccionadas[Math.floor(Math.random() * frasesNoSeleccionadas.length)];
+  
+    frasesSeleccionadas.add(fraseAleatoria);
     setFraseAleatoria(fraseAleatoria);
     setCandidatoSeleccionado("");
     setMostrarResultado(false);
   };
-
+  
   const handleReset = () => {
     setPuntos(0);
     setGameOver(false);
     setMoves(0);
-    setFrasesSeleccionadas([]); // Reiniciar las frases seleccionadas al iniciar un nuevo juego
+    setFrasesSeleccionadas(new Set()); // Reiniciar las frases seleccionadas al iniciar un nuevo juego
     obtenerFraseAleatoria();
   };
+  
 
-  const verificarRespuesta = (candidatoNombre) => {
-    setMoves((v) => v + 1); // sumo 1 a moves
-    if (moves >= maxMoves - 1) {
-      // si moves es mayor o igual a maxMoves
-      setTimeout(() => {
-        setGameOver(true); // seteo gameOver en true
-      }, 2000);
-    }
-    // Comprobar si el candidato seleccionado es el correcto
-    const candidatoCorrecto = candidatos.find((candidato) =>
-      candidato.frases.includes(fraseAleatoria)
-    );
-    const esCorrecto = candidatoCorrecto.nombre === candidatoNombre;
-    setResultadoRespuesta(
-      esCorrecto ? "Respuesta correcta" : "Respuesta incorrecta"
-    );
-    if (esCorrecto) {
-      setPuntos(puntos + 1);
-    }
-    setMostrarResultado(true);
-    // Mostrar la respuesta correcta en caso de respuesta incorrecta
-    if (!esCorrecto) {
-      setRespuestaCorrecta(candidatoCorrecto.nombre);
-    }
+  // const verificarRespuesta = (candidatoNombre) => {
+  //   setMoves((v) => v + 1); // sumo 1 a moves
+  //   if (moves >= maxMoves - 1) {
+  //     // si moves es mayor o igual a maxMoves
+  //     setTimeout(() => {
+  //       setGameOver(true); // seteo gameOver en true
+  //     }, 2000);
+  //   }
+  //   // Comprobar si el candidato seleccionado es el correcto
+  //   const candidatoCorrecto = candidatos.find((candidato) =>
+  //     candidato.frases.includes(fraseAleatoria)
+  //   );
+  //   const esCorrecto = candidatoCorrecto.nombre === candidatoNombre;
+  //   setResultadoRespuesta(
+  //     esCorrecto ? "Respuesta correcta" : "Respuesta incorrecta"
+  //   );
+  //   if (esCorrecto) {
+  //     setPuntos(puntos + 1);
+  //   }
+  //   setMostrarResultado(true);
+  //   // Mostrar la respuesta correcta en caso de respuesta incorrecta
+  //   if (!esCorrecto) {
+  //     setRespuestaCorrecta(candidatoCorrecto.nombre);
+  //   }
 
-    setMostrarResultado(true);
+  //   setMostrarResultado(true);
 
     // despues de 1s pasar a la siguiente frase
+  
+    const verificarRespuesta = (candidatoNombre) => {
+      setMoves((v) => v + 1);
+      if (moves >= maxMoves - 1) {
+          setTimeout(() => {
+              setGameOver(true);
+          }, 2000);
+      }
+      
+      const candidatoCorrecto = candidatos.find((candidato) =>
+          candidato.frases.includes(fraseAleatoria)
+      );
+  
+      if (candidatoCorrecto) {
+          const esCorrecto = candidatoCorrecto.nombre === candidatoNombre;
+          setResultadoRespuesta(
+              esCorrecto ? "Respuesta correcta" : "Respuesta incorrecta"
+          );
+  
+          if (esCorrecto) {
+              setPuntos(puntos + 1);
+          }
+  
+          setMostrarResultado(true);
+  
+          if (!esCorrecto) {
+              setRespuestaCorrecta(candidatoCorrecto.nombre);
+          }
+  
+          setMostrarResultado(true);
+      }
+  
+    
     setTimeout(() => {
       obtenerFraseAleatoria();
       setRespuestaCorrecta("");

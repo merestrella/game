@@ -31,7 +31,7 @@ export const candidatos = [
   {
     nombre: "Massa",
     frases: [
-      '"Basta con mirar la cordillera como si fuera una torta"',
+      '"Alcanza con mirar la cordillera como si fuera una torta"',
       '"¿Qué significa ir al fondo? Significa asumir metas, compromisos y obligaciones"',
       "“Si mañana no se resolviese el conflicto, vamos a habilitar a las empresas para importar todos los neumáticos que necesiten”",
       '"Yo voy a barrer con los ñoquis de La Cámpora"',
